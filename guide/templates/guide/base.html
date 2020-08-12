@@ -1,0 +1,60 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'guide/style.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/6d8917c4d7.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name=”description” content="Learn how to beat every opponent in Online Soccer Manager by using the perfect tactics.
+    Find useful tips and tricks about transfers, tactics and training and master the game!">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav class="navbar closed" id="navbar">
+        <div class="logo">
+            <a href="{% url 'home' %}">OSMGuide</a>
+        </div>
+        <div class="menu-btn">
+            <div class="menu-btn__burger"></div>
+        </div>
+        <br>
+        <ul id="pagelinks" class="pagelinks">
+            <li><a class="pagelink" href="{% url 'home' %}">Home</a></li>
+            <li><a class="pagelink" href="{% url 'tactics' %}">Tactics</a></li>
+            <li><a class="pagelink" href="{% url 'beginners_guide' %}">Beginner's Guide</a></li>
+            <li><a class="pagelink" href="{% url 'players' %}">Players</a></li>
+            <li><a class="pagelink" href="{% url 'tips' %}">Tips</a></li>
+        </ul>
+    </nav>
+    <main id="main">
+
+
+        {% block content %}
+
+        {% endblock %}
+
+
+    </main>
+
+    <article class="join">
+        <h2>Join Today!</h2>
+        <p>Enter your Email adresse to get the latest news about OSM and improve your play</p>
+        <form action="">
+            <input type="email" class="email" name="email" placeholder="Type email & hit submit" required>
+            <input type="submit" value="Submit" class="submit">
+            <input type="checkbox" name="agree" class="agree" id="agree" required>
+            <label for="agree">I agree the <a href="/terms_of_use" class="terms_of_use">terms and conditions</a></label>
+        </form>
+    </article>
+
+    <footer>
+        <p class="copyright"><a href="/terms_of_use" class="terms_conditions">Terms and Conditions</a><a href="#about" class="about">About</a><a
+                href="#contact" class="contact">Contact</a></p>
+    </footer>
+
+    <script src="{% static 'guide/animations.js' %}"></script>
+</body>
+</html>

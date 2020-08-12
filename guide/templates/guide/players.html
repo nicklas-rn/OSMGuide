@@ -1,0 +1,31 @@
+{% extends "guide/base.html" %}
+{% block title %}OSM Guide - Find the best Playes{% endblock %}
+{% load static %}
+
+{% block content %}
+
+    <article class="players" id="players">
+        <h3 class="page_title">Players</h3>
+        <input type="text" class="search" id="search_players" onkeyup="searchPlayers(event)" placeholder="Search for a player group or a player...">
+        <p class="description search_description" id="search_players_description">Type a player group or a player in the search bar above.
+        </p>
+        {% for player_group in player_groups %}
+            <div id="player_group_{{ forloop.counter }}" class="player_group">
+                <h4 id="player_group_title_{{ forloop.counter }}">{{ player_group.title }}</h4>
+                <p class="invisible keywords" id="keywords">{{ player_group.keywords }}</p>
+                {% for player in player_group.player_set.all %}
+                    <section class="player" id="player_{{ forloop.counter }}">
+                        <h5 class="player_name" id="player_name_{{ forloop.counter }}">{{ player.name }}</h5>
+                        <img src={{ player.player_image.url }} class="player_image" alt="OSM Players - {{ player.name }}">
+                        <p class="player_content content">{{ player.content }}</p>
+                        <img src={{ player.scout_image.url }} class="scout_image">
+                    </section>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </article>
+
+<link rel="stylesheet" type="text/css" href="{% static 'guide/players_style.css' %}">
+<script src="{% static 'guide/players_animations.js' %}"></script>
+
+{% endblock %}

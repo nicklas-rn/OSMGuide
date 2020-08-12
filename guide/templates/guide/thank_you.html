@@ -1,0 +1,10 @@
+{% extends "guide/base.html" %}
+{% block title %}OSM Guide - Thank you for your support!{% endblock %}
+{% load static %}
+
+{% block content %}
+    <h3 class="page_title">Thank You!</h3>
+    {% for supporter in supporters %}
+        <p class="thank_you_text">{{ supporter.name }}</p>
+    {% endfor %}
+{% endblock %}

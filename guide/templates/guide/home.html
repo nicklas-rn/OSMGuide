@@ -1,0 +1,64 @@
+{% extends "guide/base.html" %}
+{% block title %}OSM Guide: Best Tactics, Beginner's Guide, Tips and more for Online Soccer Manager{% endblock %}
+{% load static %}
+
+{% block content %}
+    <h3 class="page_title">Home</h3>
+    <article class="sideshow-container">
+        {% for sideshow in sideshows %}
+        <a href="{{ sideshow.link }}">
+            <section class="rounded_corners sideshow fade">
+                <img src={{ sideshow.image.url }} alt="sideshow image" class="sideshow_img">
+                <h4>{{ sideshow.title }}</h4>
+                <p>{{ sideshow.content }}</p>
+            </section>
+        </a>
+        {% endfor %}
+    </article>
+    <article class="links">
+        <h3>Master the game</h3>
+        <section class="tactics_link">
+            <a href="/tactics" >
+                <div class="rounded_corners">
+                    <img src="media/home_images/tactics.jpg"alt="OSM tactics" class="rounded_corners_img">
+                    <p>Tactics</p>
+                </div>
+            </a>
+        </section>
+        <section class="players_link">
+            <a href="/players" >
+                <div class="rounded_corners">
+                    <img src="media/home_images/players.jpg" alt="OSM players picture" class="rounded_corners_img">
+                    <p>Players</p>
+                </div>
+            </a>
+        </section>
+        <section class="tips_link">
+            <a href="/tips" >
+                <div class="rounded_corners">
+                    <img src="media/home_images/tips.jpg" alt="OSM tips picture" class="rounded_corners_img">
+                    <p>Tips</p>
+                </div>
+            </a>
+        </section>
+        <section class="beginners_guide_link">
+            <a href="/beginners_guide" >
+                <div class="rounded_corners">
+                    <img src="media/home_images/beginners_guide.jpg" alt="OSM beginners guide picture" class="rounded_corners_img">
+                    <p>Beginner's Guide</p>
+                </div>
+            </a>
+        </section>
+    </article>
+    <article class="thank_you_container">
+        <a href="/thank_you">
+            <section class="rounded_corners thank_you">
+                <img src="media/home_images/stadium.PNG" alt="thank you for your support image" class="thank_you_img">
+                <h4>Thank you for your great support!</h4>
+            </section>
+        </a>
+    </article>
+
+<script src="{% static 'guide/home_animations.js' %}"></script>
+
+{% endblock content %}

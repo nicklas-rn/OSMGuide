@@ -1,0 +1,49 @@
+.beginner_tip{
+    position: relative;
+    background: white;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    border-radius: 20px;
+    padding-top: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 4%;
+    margin-bottom: 3%;
+    text-align: left;
+    box-shadow:  7px 7px 14px #d2cece, 
+               -7px -7px 14px #e9e6e6;
+}
+
+.beginner_tip h6{
+    font-size: 15;
+    font-weight: 500;
+    color: #939393;
+}
+
+.beginner_tip h4{
+    font-size: 23;
+    font-weight: 500;
+}
+
+.beginner_tip_image{
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+
+.beginner_tip p{
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 3%;
+}
+
+
+
+@media screen and (min-width: 810px) {
+    .beginner_tip{
+        border-radius: 10px;
+    }
+}

@@ -1,0 +1,22 @@
+{% extends "guide/base.html" %}
+{% load static %}
+{% block title %}OSM Guide - Beginner's Guide: Get started with Online Soccer Manager{% endblock %}
+
+{% block content %}
+
+    <article class="beginners_guide">
+        <h3 class="page_title">Beginner's Guide</h3>
+        {% for tip in tips %}
+            <section class="beginner_tip">
+                <h6>Beginner tip {{ forloop.counter }}</h6>
+                <h4>{{ tip.title }}</h4>
+                <img class="beginner_tip_image" src="{{ tip.image.url }}" alt="Beginners Guide Tip - {{ tip.title }}">
+                <p class="beginners_guide_content content">{{ tip.content }}</p>
+            </section>
+        {% endfor %}
+    </article>
+
+<link rel="stylesheet" type="text/css" href="{% static 'guide/beginners_guide_style.css' %}">
+<script src="{% static 'guide/beginners_guide_animations.js' %}"></script>
+
+{% endblock %}

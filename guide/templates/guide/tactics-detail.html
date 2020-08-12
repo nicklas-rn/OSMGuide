@@ -1,0 +1,55 @@
+{% extends "guide/base.html" %}
+{% load static %}
+{% block title %}
+    {% for counter_tactic in counter_tactics %}
+        {{counter_tactic.title}} in Online Soccer Manager - OSM Guide
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <article class="counter_tactics" id="counter_tactics">
+        <section class="back_link_container">
+            <a class="back_link" href="/tactics"><i class="fas fa-chevron-left"></i>Back to all tactics</a>
+        </section>
+        {% for counter_tactic in counter_tactics %}
+            <div id="counter_tactic_{{ forloop.counter }}" class="tactic">
+                <h5 class="counter_tactic_title" id="counter_tactic_title_{{ forloop.counter }}">{{ counter_tactic.title }}</h5>
+                <h6 class="weaker_opponent_nav" id="weaker_opponent_nav" onclick="weakerOpponent({{ forloop.counter0 }})">weaker opponent</h6>
+                <h6 class="stronger_opponent_nav" id="stronger_opponent_nav" onclick="strongerOpponent({{ forloop.counter0 }})">stronger opponent</h6>
+                {% for counter_tactic_weaker in counter_tactic.countertacticweaker_set.all %}
+                    <section class="weaker_opponent" id="weaker_opponent">
+                        <p class="formation_text">Against a weaker team you should choose <span class="bold">{{ counter_tactic_weaker.formation_text }}</span>
+                            as your formation</p>
+                        <img src={{ counter_tactic_weaker.formation_image.url }} class="formation_image" alt="How to beat {{ counter_tactic.title }} - formation">
+                        <p class="style_of_play_text">Your style of play should be <span class="bold">{{ counter_tactic_weaker.style_of_play_text }}</span></p>
+                        <img src={{ counter_tactic_weaker.style_of_play_image.url }} class="style_of_play_image" alt="How to beat {{ counter_tactic.title }} - style of play">
+                        <p class="line_tactics_text">Your line tactics have to be adjusted as follows</p>
+                        <img src={{ counter_tactic_weaker.line_tactics_image.url }} class="line_tactics_image">
+                        <p class="marking_offside_text">Marking and and offside play should also be adjusted</p>
+                        <img src={{ counter_tactic_weaker.marking_offside_image.url }} class="marking_offside_image">
+                        <p class="tackling_index_text">The sliders have to be set like this</p>
+                        <img src={{ counter_tactic_weaker.tackling_index_image.url }} class="tackling_index_image">
+                    </section>
+                {% endfor %}
+                {% for counter_tactic_stronger in counter_tactic.countertacticstronger_set.all %}
+                    <section class="stronger_opponent" id="stronger_opponent">
+                        <p class="formation_text">Against a stronger team you should choose <span class="bold">{{ counter_tactic_stronger.formation_text }}</span>
+                            as your formation</p>
+                        <img src={{ counter_tactic_stronger.formation_image.url }} class="formation_image">
+                        <p class="style_of_play_text">Your style of play should be <span class="bold">{{ counter_tactic_stronger.style_of_play_text }}</span></p>
+                        <img src={{ counter_tactic_stronger.style_of_play_image.url }} class="style_of_play_image">
+                        <p class="line_tactics_text">Your line tactics have to be adjusted as follows</p>
+                        <img src={{ counter_tactic_stronger.line_tactics_image.url }} class="line_tactics_image">
+                        <p class="marking_offside_text">Marking and and offside play should also be adjusted</p>
+                        <img src={{ counter_tactic_stronger.marking_offside_image.url }} class="marking_offside_image">
+                        <p class="tackling_index_text">The sliders have to be set like this</p>
+                        <img src={{ counter_tactic_stronger.tackling_index_image.url }} class="tackling_index_image">
+                    </section>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </article>
+<link rel="stylesheet" type="text/css" href="{% static 'guide/tactics-detail_style.css' %}">
+<script src="{% static 'guide/tactics-detail_animations.js' %}"></script>
+
+{% endblock %}

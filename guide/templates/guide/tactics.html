@@ -1,0 +1,83 @@
+{% extends "guide/base.html" %}
+{% load static %}
+{% block title %}Best Tactic 2020 for Online Soccer Manager - OSM Guide{% endblock %}
+
+{% block content %}
+    <article class="secondary_navbar">
+        <h4 id="counter_tactics_nav" class="counter_tactics_nav" onclick="counterTactics()">Counter Tactics</h4>
+        <h4 id="overall_tactics_nav" class="overall_tactics_nav" onclick="overallTactics()">Overall Tactics</h4>
+        <div class="grey_line"></div>
+        <div id="blue_line" class="blue_line"></div>
+    </article>
+    <article class="counter_tactics" id="counter_tactics">
+        <input type="text" class="search" id="search_tactics" onkeyup="searchTactics()" placeholder="Search for opponent's formation ...">
+        <p class="description search_description" id="search_tactics_description">Enter the formation of your opponent in the search bar above.
+            We will find the best tactic to beat your opponent.
+        </p>
+        {% for counter_tactic in counter_tactics %}
+            <div id="counter_tactic_{{ forloop.counter }}" class="tactic">
+                <p class="counter_tactic_id">{{ counter_tactic.id }}</p>
+                <h5 class="counter_tactic_title" id="counter_tactic_title_{{ forloop.counter }}">{{ counter_tactic.title }}</h5>
+                <h6 class="weaker_opponent_nav" id="weaker_opponent_nav" onclick="weakerOpponent({{ forloop.counter0 }})">weaker opponent</h6>
+                <h6 class="stronger_opponent_nav" id="stronger_opponent_nav" onclick="strongerOpponent({{ forloop.counter0 }})">stronger opponent</h6>
+                {% for counter_tactic_weaker in counter_tactic.countertacticweaker_set.all %}
+                    <section class="weaker_opponent" id="weaker_opponent">
+                        <p class="formation_text">Against a weaker team you should choose <span class="bold">{{ counter_tactic_weaker.formation_text }}</span>
+                            as your formation</p>
+                        <img src={{ counter_tactic_weaker.formation_image.url }} class="formation_image" alt="How to beat {{ counter_tactic.title }} - formation">
+                        <p class="style_of_play_text">Your style of play should be <span class="bold">{{ counter_tactic_weaker.style_of_play_text }}</span></p>
+                        <img src={{ counter_tactic_weaker.style_of_play_image.url }} class="style_of_play_image" alt="How to beat {{ counter_tactic.title }} - style of play">
+                        <p class="line_tactics_text">Your line tactics have to be adjusted as follows</p>
+                        <img src={{ counter_tactic_weaker.line_tactics_image.url }} class="line_tactics_image">
+                        <p class="marking_offside_text">Marking and and offside play should also be adjusted</p>
+                        <img src={{ counter_tactic_weaker.marking_offside_image.url }} class="marking_offside_image">
+                        <p class="tackling_index_text">The sliders have to be set like this</p>
+                        <img src={{ counter_tactic_weaker.tackling_index_image.url }} class="tackling_index_image">
+                    </section>
+                {% endfor %}
+                {% for counter_tactic_stronger in counter_tactic.countertacticstronger_set.all %}
+                    <section class="stronger_opponent" id="stronger_opponent">
+                        <p class="formation_text">Against a stronger team you should choose <span class="bold">{{ counter_tactic_stronger.formation_text }}</span>
+                            as your formation</p>
+                        <img src={{ counter_tactic_stronger.formation_image.url }} class="formation_image">
+                        <p class="style_of_play_text">Your style of play should be <span class="bold">{{ counter_tactic_stronger.style_of_play_text }}</span></p>
+                        <img src={{ counter_tactic_stronger.style_of_play_image.url }} class="style_of_play_image">
+                        <p class="line_tactics_text">Your line tactics have to be adjusted as follows</p>
+                        <img src={{ counter_tactic_stronger.line_tactics_image.url }} class="line_tactics_image">
+                        <p class="marking_offside_text">Marking and and offside play should also be adjusted</p>
+                        <img src={{ counter_tactic_stronger.marking_offside_image.url }} class="marking_offside_image">
+                        <p class="tackling_index_text">The sliders have to be set like this</p>
+                        <img src={{ counter_tactic_stronger.tackling_index_image.url }} class="tackling_index_image">
+                    </section>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </article>
+
+    <article class="overall_tactics" id="overall_tactics">
+        <p class="description">Generally, you should choose your own tactic by looking at your opponent's one and picking the best counter tactic.
+            However, if you want to spend less time, choose one of the best overall tactics that are listed here.</p>
+        {% for best_tactic in best_tactics %}
+            <div id="tactic_{{ forloop.counter }}" class="tactic">
+                <h5 id="tactic_title_{{ forloop.counter }}">{{ best_tactic.title }}</h5>
+                    <section><br>
+                        <p class="formation_text">If you want to play this tactic, you should use <span class="bold">{{ best_tactic.formation_text }}</span>
+                            as your formation:</p>
+                        <img src={{ best_tactic.formation_image.url }} class="formation_image">
+                        <p class="style_of_play_text">Your style of play should be <span class="bold">{{ best_tactic.style_of_play_text }}:</span></p>
+                        <img src={{ best_tactic.style_of_play_image.url }} class="style_of_play_image">
+                        <p class="line_tactics_text">Your line tactics have to be adjusted as follows:</p>
+                        <img src={{ best_tactic.line_tactics_image.url }} class="line_tactics_image">
+                        <p class="marking_offside_text">Marking and and offside play should also be adjusted:</p>
+                        <img src={{ best_tactic.marking_offside_image.url }} class="marking_offside_image">
+                        <p class="tackling_index_text">The sliders have to be set like this:</p>
+                        <img src={{ best_tactic.tackling_index_image.url }} class="tackling_index_image">
+                    </section>
+                {% endfor %}
+            </div>
+    </article>
+
+<link rel="stylesheet" type="text/css" href="{% static 'guide/tactics_style.css' %}">
+<script src="{% static 'guide/tactics_animations.js' %}"></script>
+
+{% endblock %}

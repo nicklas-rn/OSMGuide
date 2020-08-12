@@ -1,0 +1,35 @@
+    <article class="links">
+        <h3>Become a pro</h3>
+        <section>
+            <a href="/tactics" >
+                <div class="rounded_corners">
+                    <img src="media/home_images/tactics.jpg"alt="tactics picture">
+                    <p>Tactics</p>
+                </div>
+            </a>
+        </section>
+        <section>
+            <a href="/tactics" >
+                <div class="rounded_corners">
+                    <img src="media/home_images/players.jpg" alt="players picture">
+                    <p>Players</p>
+                </div>
+            </a>
+        </section>
+        <section>
+            <a href="/tips" >
+                <div class="rounded_corners">
+                    <img src="media/home_images/tips.jpg" alt="tips picture">
+                    <p>Tips</p>
+                </div>
+            </a>
+        </section>
+        <section class="beginners_guide_link">
+            <a href="/beginners_guide" >
+                <div class="rounded_corners">
+                    <img src="media/home_images/beginners_guide.jpg" alt="beginners guide picture">
+                    <p>Beginner's Guide</p>
+                </div>
+            </a>
+        </section>
+    </article>

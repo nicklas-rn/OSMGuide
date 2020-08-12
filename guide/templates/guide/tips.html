@@ -1,0 +1,34 @@
+{% extends "guide/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <article class="tips" id="tips">
+        <h3 class="page_title">Tips</h3>
+        <input type="text" class="search" id="search_tips" onkeyup="searchTips(event)" placeholder="Search for tips...">
+        <p class="description search_description" id="search_tips_description">
+            Type the category for which you want to find tips into the searchbar above
+        </p>
+        {% for tip_group in tip_groups %}
+            <div id="tip_group_{{ forloop.counter }}" class="tip_group">
+                <h4 id="tip_group_title_{{ forloop.counter }}">{{ tip_group.title }}</h4>
+                <p class="invisible keywords" id="keywords">{{ tip_group.keywords }}</p>
+                {% for tip in tip_group.tip_set.all %}
+                    <section class="tip" id="tip_{{ forloop.counter }}">
+                        <h5 class="tip_name" id="tip_name_{{ forloop.counter }}">{{ tip.name }}</h5>
+                        {% if tip.tip_image.url %}
+                            <img src={{ tip.tip_image.url }} class="tip_image" alt="OSM Tips - {{ tip.name }}">
+                        {% endif %}
+                        <p class="tip_content content">{{ tip.content }}</p>
+                    </section>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </article>
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'guide/tips_style.css' %}">
+<script src="{% static 'guide/tips_animations.js' %}"></script>
+
+{% endblock %}
