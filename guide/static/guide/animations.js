@@ -6,12 +6,12 @@ menuBtn.addEventListener('click', () => {
   if(!menuOpen) {
     menuBtn.classList.add('open');
     menuOpen = true;
-    navBar.style.height = "34%";
+    navBar.style.height = "260px";
     pagelinks.style.display = "block";
   } else {
     menuBtn.classList.remove('open');
     menuOpen = false;
-    navBar.style.height = "6%";
+    navBar.style.height = "46";
   }
 });
 
@@ -36,7 +36,7 @@ function boldText(){
             else {
                 document.getElementsByClassName("content")[x].innerHTML += splitstring[i].bold();
           }
-        }    
+        }
     }
   }
 }
@@ -63,9 +63,35 @@ function linkText(){
                 var processed_string = splitstring[i].split("@");
                 document.getElementsByClassName("content")[x].innerHTML += processed_string[0].link(processed_string[1]);
           }
-        }    
+        }
     }
   }
 }
+
+
+
+//turn words with --...@link@-- around them into a link that leads to the link between @...@
+nextLine()
+
+function nextLine(){
+    var x, i
+    // only execute when desired item exists
+    if (document.getElementsByClassName("content")){
+      var strings = document.getElementsByClassName("content");
+      for (x = 0; x < strings.length; x++){
+        var string = strings[x].innerHTML;
+        var splitstring = string.split("==");
+        document.getElementsByClassName("content")[x].innerHTML = splitstring[0]
+        document.getElementsByClassName("content")[x].innerHTML += "<br>"
+        for (i = 1; i < splitstring.length; i++) {
+         document.getElementsByClassName("content")[x].innerHTML += splitstring[i]
+         document.getElementsByClassName("content")[x].innerHTML += "<br>"
+            }
+        }
+    }
+}
+
+
+
 
 

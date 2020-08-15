@@ -13,8 +13,8 @@ function searchTactics() {
 
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < div.length; i++) {
-    title = div[i].getElementsByTagName("h5")[0];
-    txtValue = title.textContent.replace(/\s/g,'') || title.innerText.replace(/\s/g,'');
+    tactic_title = div[i].getElementsByClassName("counter_tactic_title")[0];
+    txtValue = tactic_title.textContent.replace(/\s/g,'') || tactic_title.innerText.replace(/\s/g,'');
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       div[i].style.display = "";
     } else {
@@ -26,7 +26,7 @@ function searchTactics() {
 
 // show tactic against weaker Opponent
 function weakerOpponent(i) {
-  var weaker_opponent_nav, stronger_opponent_nav, 
+  var weaker_opponent_nav, stronger_opponent_nav,
   weaker_opponent_section, stronger_opponent_section;
 
   weaker_opponent_nav = document.getElementsByClassName('weaker_opponent_nav')[i];
@@ -38,11 +38,11 @@ function weakerOpponent(i) {
   stronger_opponent_nav.style.backgroundColor = "white";
   weaker_opponent_section.style.display = "";
   stronger_opponent_section.style.display = "none";
-} 
+}
 
 // show tactic against stronger opponent
 function strongerOpponent(i) {
-  var weaker_opponent_nav, stronger_opponent_nav, 
+  var weaker_opponent_nav, stronger_opponent_nav,
   weaker_opponent_section, stronger_opponent_section;
 
   weaker_opponent_nav = document.getElementsByClassName('weaker_opponent_nav')[i];
@@ -67,26 +67,20 @@ for (x = 0; x < div.length; x++) {
 
 
 // go to counter tactics -> set this as default
-counterTactics()
+
 function counterTactics() {
-  blue_line = document.getElementById('blue_line');
   overall_tactics = document.getElementById('overall_tactics');
   counter_tactics = document.getElementById('counter_tactics');
 
-  blue_line.style.transform = "translateX(0%)";
-  overall_tactics.style.display = "none";
-  counter_tactics.style.display = "";
+  window.location.href = "/tactics/counter-tactics/"
 }
 
 // go to overall tactics
 function overallTactics() {
-  blue_line = document.getElementById('blue_line');
   overall_tactics = document.getElementById('overall_tactics');
   counter_tactics = document.getElementById('counter_tactics');
 
-  blue_line.style.transform = "translateX(100%)";
-  overall_tactics.style.display = "";
-  counter_tactics.style.display = "none";
+  window.location.href = "/tactics/overall-tactics/"
 }
 
 

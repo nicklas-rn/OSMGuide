@@ -12,7 +12,7 @@ def home(request):
     return render(request, 'guide/home.html', {'sideshows': sideshows})
 
 
-def tactics(request):
+def counter_tactics(request):
     counter_tactics = CounterTactic.objects.all()
     best_tactics = BestTactic.objects.all()
     counter_tactics_weaker = CounterTacticWeaker.objects.all()
@@ -23,7 +23,15 @@ def tactics(request):
         'counter_tactics_weaker': counter_tactics_weaker,
         'counter_tactics_stronger': counter_tactics_stronger,
     }
-    return render(request, 'guide/tactics.html', context)
+    return render(request, 'guide/counter-tactics.html', context)
+
+
+def overall_tactics(request):
+    best_tactics = BestTactic.objects.all()
+    context = {
+        'best_tactics': best_tactics,
+    }
+    return render(request, 'guide/overall-tactics.html', context)
 
 
 def counter_tactic_detail(request, title):

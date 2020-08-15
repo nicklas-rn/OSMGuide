@@ -40,6 +40,7 @@ class Tactic(models.Model):
 
 class CounterTactic(models.Model):
     title = models.CharField(max_length=30)
+    thumbnail = models.ImageField(upload_to="tactics/thumbnail", blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -66,7 +67,7 @@ class CounterTacticStronger(Tactic):
 
 
 class BestTactic(Tactic):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=80)
 
     def __str__(self):
         return self.title
@@ -76,7 +77,8 @@ class BeginnerTip(models.Model):
     title = models.CharField(max_length=40)
     image = models.ImageField(upload_to="beginner_tips_images")
     content = models.CharField(max_length=1000, help_text="BOLD: //x// to make x bold ................. "
-                                                          "LINK: --x@/link@-- to go page link with text x")
+                                                          "LINK: --x@/link@-- to go page link with text x..................."
+                                                          "NEXT LINE: ==")
 
     def __str__(self):
         return self.title
@@ -94,8 +96,9 @@ class Player(models.Model):
     group = models.ForeignKey(PlayerGroup, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     player_image = models.ImageField(upload_to="players/player_images")
-    content = models.CharField(max_length=1000, help_text="BOLD: //x// to make x bold ............... "
-                                                          "LINK: --x@/link@-- to go page link with text x")
+    content = models.CharField(max_length=1000, help_text="BOLD: //x// to make x bold ................. "
+                                                          "LINK: --x@/link@-- to go page link with text x..................."
+                                                          "NEXT LINE: ==")
     scout_image = models.ImageField(upload_to="players/scout_images")
 
     def __str__(self):
@@ -114,8 +117,9 @@ class Tip(models.Model):
     group = models.ForeignKey(TipGroup, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     tip_image = models.ImageField(upload_to="players/player_images", blank=True, null=True)
-    content = models.CharField(max_length=1000, help_text="BOLD: //x// to make x bold ................ "
-                                                          "LINK: --x@/link@-- to go page link with text x")
+    content = models.CharField(max_length=1000, help_text="BOLD: //x// to make x bold ................. "
+                                                          "LINK: --x@/link@-- to go page link with text x..................."
+                                                          "NEXT LINE: ==")
 
     def __str__(self):
         return self.name

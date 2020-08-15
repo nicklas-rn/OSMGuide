@@ -1,18 +1,22 @@
 {% extends "guide/base.html" %}
 {% load static %}
-{% block title %}
-    {% for counter_tactic in counter_tactics %}
-        {{counter_tactic.title}} in Online Soccer Manager - OSM Guide
-    {% endfor %}
-{% endblock %}
+{% block title %}Best Tactic 2020 for Online Soccer Manager - OSM Guide{% endblock %}
 
 {% block content %}
+    <article class="secondary_navbar">
+        <h4 id="counter_tactics_nav" class="counter_tactics_nav" onclick="counterTactics()">Counter Tactics</h4>
+        <h4 id="overall_tactics_nav" class="overall_tactics_nav" onclick="overallTactics()">Overall Tactics</h4>
+        <div class="grey_line"></div>
+        <div id="blue_line" class="blue_line_counter"></div>
+    </article>
     <article class="counter_tactics" id="counter_tactics">
-        <section class="back_link_container">
-            <a class="back_link" href="/tactics/counter-tactics"><i class="fas fa-chevron-left"></i>Back to all tactics</a>
-        </section>
+        <input type="text" class="search" id="search_tactics" onkeyup="searchTactics()" placeholder="Search for opponent's formation ...">
+        <p class="description search_description" id="search_tactics_description">Enter the formation of your opponent in the search bar above.
+            We will find the best tactic to beat your opponent.
+        </p>
         {% for counter_tactic in counter_tactics %}
             <div id="counter_tactic_{{ forloop.counter }}" class="tactic">
+                <p class="counter_tactic_id">{{ counter_tactic.id }}</p>
                 <h5 class="counter_tactic_title" id="counter_tactic_title_{{ forloop.counter }}">{{ counter_tactic.title }}</h5>
                 <h6 class="weaker_opponent_nav" id="weaker_opponent_nav" onclick="weakerOpponent({{ forloop.counter0 }})">weaker opponent</h6>
                 <h6 class="stronger_opponent_nav" id="stronger_opponent_nav" onclick="strongerOpponent({{ forloop.counter0 }})">stronger opponent</h6>
@@ -49,7 +53,9 @@
             </div>
         {% endfor %}
     </article>
-<link rel="stylesheet" type="text/css" href="{% static 'guide/tactics-detail_style.css' %}">
-<script src="{% static 'guide/tactics-detail_animations.js' %}"></script>
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'guide/tactics_style.css' %}">
+<script src="{% static 'guide/tactics_animations.js' %}"></script>
 
 {% endblock %}
